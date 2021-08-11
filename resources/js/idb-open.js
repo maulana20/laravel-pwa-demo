@@ -21,6 +21,15 @@ class idbTable {
             return tx.complete;
         });
     }
+    
+    delete(key) {
+        return objtb.then(db => {
+            const tx = db.transaction(this.table_name, 'readwrite');
+            tx.objectStore(this.table_name).delete(key);
+            
+            return tx.complete;
+        });
+    }
 };
 
 const saveProduct = function(product) {
@@ -32,9 +41,10 @@ const saveProduct = function(product) {
         category:product.category
     });
     
-    fetch('/post.php', { method: 'POST', headers: { 'Content-Type':'application/json', 'Accept':'application/json' }, body: params }).then(function(response) {
+    fetch('/api/product', { method: 'POST', headers: { 'Content-Type':'application/json', 'Accept':'application/json' }, body: params }).then(function(response) {
         response.text().then(function(res) {
-            if (res == "oke") {
+            res = JSON.parse(res)
+            if (res && res.success == true) {
                 console.log('deleting id ' + product.id);
                 (new idbTable('product')).delete(product.id);
             }
