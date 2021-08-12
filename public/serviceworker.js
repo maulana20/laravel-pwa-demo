@@ -3,6 +3,7 @@ var filesToCache = [
     '/offline',
     '/',
     '/product',
+    '/product/cache',
     '/product/create',
     '/css/app.css',
     '/js/app.js',

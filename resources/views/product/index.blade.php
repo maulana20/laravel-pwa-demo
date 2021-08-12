@@ -10,7 +10,7 @@
                 <div class="row mb-4">
                     <div class="col-lg-6">
                         <h5><b>Product List</b></h5>
-                        <div id="cache" class="wrap-cache">0 cache</div>
+                        <span id="cache" class="wrap-cache" onclick="window.open('{{ route('admin.product.cache') }}', '_self')">0 cache</span>
                     </div>
                     <div class="col-lg-6">
                         <form class="form-inline justify-content-end" action="" method="get">
@@ -28,7 +28,6 @@
                     </tr>
                 </thead>
                 <tbody id="tablecontents">
-                    <tr class="row1"></tr>
                 </tbody>
             </table>
         </div>
@@ -63,6 +62,7 @@
             console.log("error " + err);
         });
     }
+    
     function showCache() {
         (new idbTable('product')).count().then(function(res) {
             if (res > 0) {

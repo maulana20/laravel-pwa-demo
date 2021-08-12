@@ -18,4 +18,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('product/cache', [ProductController::class, 'cache'], ['as' => 'admin'])->name('admin.product.cache');
 Route::resource('product', ProductController::class, ['as' => 'admin']);

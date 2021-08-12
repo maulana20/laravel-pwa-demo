@@ -12,6 +12,11 @@ class ProductController extends Controller
         return view('product.index');
     }
     
+    public function cache(Request $request)
+    {
+        return view('product.cache');
+    }
+    
     public function create()
     {
         $categories = (Category::class)::asArray();
