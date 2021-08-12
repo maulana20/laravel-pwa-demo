@@ -8,14 +8,7 @@
         <div class="create-content my-4">
             <h4 class="mt-4 mb-5">Create Product</h4>
             <form id="createProduct" onsubmit="return false;">
-                <div class="form-group row mb-4">
-                    <label class="col-lg-3 col-form-label label-dsf-dws d-flex align-items-center">
-                        ID &nbsp; <span class="text-danger"><b>*</b></span>
-                    </label>
-                    <div class="col-lg-6">
-                        <input type="text" name="id" id="id" class="form-control shadow-none" placeholder="Product ID">
-                    </div>
-                </div>
+                <input type="hidden" name="id" id="id">
                 <div class="form-group row mb-4">
                     <label class="col-lg-3 col-form-label label-dsf-dws d-flex align-items-center">
                         Name &nbsp; <span class="text-danger"><b>*</b></span>
@@ -48,7 +41,7 @@
 @section('script')
 <script>
     document.querySelector("#btn_save").addEventListener('click',function() {
-        id = document.querySelector("#id").value;
+        var id = document.querySelector("#id").value;
         var product = {
             'id': id,
             'name': document.querySelector("#name").value,
@@ -66,7 +59,10 @@
         }
         
         alert('berhasil simpan');
-        document.getElementById("createProduct").reset();
+        location.href = '/product'
     });
+    (function() {
+        (new idbTable('product')).count().then(res => document.querySelector("#id").value = res + 1)
+    })();
 </script>
 @endsection

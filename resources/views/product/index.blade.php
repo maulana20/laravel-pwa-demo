@@ -10,6 +10,7 @@
                 <div class="row mb-4">
                     <div class="col-lg-6">
                         <h5><b>Product List</b></h5>
+                        <div id="cache" class="wrap-cache">0 cache</div>
                     </div>
                     <div class="col-lg-6">
                         <form class="form-inline justify-content-end" action="" method="get">
@@ -62,9 +63,18 @@
             console.log("error " + err);
         });
     }
+    function showCache() {
+        (new idbTable('product')).count().then(function(res) {
+            if (res > 0) {
+                document.querySelector("#cache").innerText = res + ' cache'
+                document.querySelector("#cache").style.display = 'block'
+            }
+        })
+    }
     
     (function() {
         init();
+        showCache();
     })();
 </script>
 @endsection
