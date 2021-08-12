@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Enums\Product\Category;
 
 class ProductController extends Controller
 {
@@ -13,6 +14,8 @@ class ProductController extends Controller
     
     public function create()
     {
-        return view('product.create');
+        $categories = (Category::class)::asArray();
+        
+        return view('product.create', compact('categories'));
     }
 }

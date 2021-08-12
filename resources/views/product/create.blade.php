@@ -29,7 +29,11 @@
                         Category &nbsp; <span class="text-danger"><b>*</b></span>
                     </label>
                     <div class="col-lg-6">
-                        <input type="text" name="category" id="category" class="form-control shadow-none" placeholder="Category">
+                        <select class="form-control w-auto" name="category" id="category">
+                        @foreach ($categories as $category => $index)
+                            <option value="{{ $index }}">{{ $category }}</option>
+                        @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="form-group mt-5 m-0">
