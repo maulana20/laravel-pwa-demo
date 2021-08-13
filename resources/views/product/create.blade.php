@@ -42,10 +42,12 @@
 <script>
     document.querySelector("#btn_save").addEventListener('click',function() {
         var id = document.querySelector("#id").value;
+        var category = document.querySelector("#category").value;
         var product = {
             'id': id,
             'name': document.querySelector("#name").value,
-            'category': document.querySelector("#category").value
+            'category': category,
+            'category_name': document.querySelector("#category").options[category - 1].innerHTML
         };
 
         if ('serviceWorker' in navigator && 'SyncManager' in window) {

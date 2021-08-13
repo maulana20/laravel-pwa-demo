@@ -42,7 +42,6 @@ const saveProduct = function(product) {
     console.log('processing id ' + product.id);
     
     var params = JSON.stringify({
-        id:product.id,
         name:product.name,
         category:product.category
     });

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Traits\ApiResponser;
+use App\Http\Requests\Product\StoreRequest;
+use App\Models\Product;
 
 class ProductController extends Controller
 {
@@ -12,11 +14,15 @@ class ProductController extends Controller
     
     public function index(Request $request)
     {
-        return $this->sendResponse([['id' => 1, 'name' => 'h&m', 'category' => 1], ['id' => 2, 'name' => 'casio', 'category' => 2]], 'Product list getting success.');
+        $products = Product::all();
+        
+        return $this->sendResponse($products, 'Product list getting success.');
     }
     
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
+        Product::create($request->getProduct());
+        
         return $this->sendResponse(null, 'Product successfully stored.');
     }
 }

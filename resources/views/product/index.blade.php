@@ -51,7 +51,7 @@
                             
                             row.insertCell(0).innerHTML = i + 1
                             row.insertCell(1).innerHTML = product.name
-                            row.insertCell(2).innerHTML = product.category
+                            row.insertCell(2).innerHTML = product.category_name
                         }
                     }
                 });
